@@ -2,13 +2,12 @@ package com.kevinhan.meituan.Activity.Activity;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.kevinhan.meituan.Activity.Adapter.NormalRecyclerViewAdapter;
+import com.kevinhan.meituan.Activity.Adapter.MainAdapter;
 import com.kevinhan.meituan.R;
 import com.yalantis.phoenix.PullToRefreshView;
 
@@ -26,6 +25,25 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        // 创建一个线性布局管理器
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        // 设置布局管理器
+        recyclerView.setLayoutManager(layoutManager);
+
+        // 创建数据集
+        String[] dataset = new String[100];
+        for (int i = 0; i < dataset.length; i++){
+            dataset[i] = "item" + i;
+        }
+        // 创建Adapter，并指定数据集
+        MainAdapter adapter = new MainAdapter(dataset);
+        // 设置Adapter
+        recyclerView.setAdapter(adapter);
+        phoenx();
     }
 
     /**
@@ -45,14 +63,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
     }
-
-    public void setmRecyclerView(){
-        //mRecyclerView.setLayoutManager(new LinearLayoutManager(this));//这里用线性显示 类似于listview
-        //mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));//这里用线性宫格显示 类似于grid view
-        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, OrientationHelper.VERTICAL));//这里用线性宫格显示 类似于瀑布流
-        mRecyclerView.setAdapter(new NormalRecyclerViewAdapter(this));
-    }
-
 
 
     @Override
