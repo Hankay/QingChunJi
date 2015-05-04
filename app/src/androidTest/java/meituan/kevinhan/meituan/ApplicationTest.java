@@ -1,4 +1,4 @@
-package com.kevinhan.meituan;
+package meituan.kevinhan.meituan;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
