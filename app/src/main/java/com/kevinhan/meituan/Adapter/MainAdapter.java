@@ -1,14 +1,12 @@
 package com.kevinhan.meituan.Adapter;
 
-import android.support.v7.widget.RecyclerView;
+/*import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-/**
- * Created by Kevin on 2015/4/30.
- */
+*//*
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
 
     // Êý¾Ý¼¯
@@ -49,4 +47,4 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
             mTextView = (TextView) itemView;
         }
     }
-}
+}*/

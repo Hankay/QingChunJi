@@ -1,5 +1,6 @@
 package com.kevinhan.meituan.Fragment;
 
+/*
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -138,4 +139,4 @@ public class LayoutFragment extends Fragment {
     public int getLayoutId() {
         return getArguments().getInt(ARG_LAYOUT_ID);
     }
-}
+}*/

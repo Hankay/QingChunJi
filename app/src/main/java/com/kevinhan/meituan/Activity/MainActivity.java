@@ -1,13 +1,13 @@
 package com.kevinhan.meituan.Activity;
 
-import android.support.v7.app.ActionBarActivity;
+/*import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 
 import com.kevinhan.meituan.Fragment.LayoutFragment;
 import com.kevinhan.meituan.R;
-import com.yalantis.phoenix.PullToRefreshView;
+import com.yalantis.phoenix.PullToRefreshView;*/
 
 
 /**
@@ -16,6 +16,7 @@ import com.yalantis.phoenix.PullToRefreshView;
 
 
 
+/*
 public class MainActivity extends ActionBarActivity {
 
     public static final int REFRESH_DELAY = 2000;
@@ -102,9 +103,8 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    /**
-     * ÏÂÀ­Ë¢ÐÂ
-     */
+    *//*
+
     public void phoenx(){
         mPullToRefreshView = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
         mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
@@ -120,3 +120,4 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 }
+*/
