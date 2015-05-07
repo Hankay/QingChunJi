@@ -1,9 +1,10 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".StaggeredGridActivity">
+    android:layout_height="match_parent"
+    tools:context=".StaggeredGridActivity"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar"/>
 
     <com.yalantis.phoenix.PullToRefreshView
         android:id="@+id/pull_to_refresh"
@@ -22,4 +23,4 @@
     </com.yalantis.phoenix.PullToRefreshView>
 
 
-</FrameLayout>
+</LinearLayout>
