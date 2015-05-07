@@ -21,11 +21,15 @@ import com.etsy.android.grid.StaggeredGridView;
 import com.kevinhan.meituan.Adapter.SampleAdapter;
 import com.kevinhan.meituan.Data.SampleData;
 import com.kevinhan.meituan.R;
+import com.yalantis.phoenix.PullToRefreshView;
 
 public class StaggeredGridActivity extends Activity implements AbsListView.OnScrollListener, AbsListView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     private static final String TAG = "StaggeredGridActivity";
     public static final String SAVED_DATA_KEY = "SAVED_DATA";
+
+    public static final int REFRESH_DELAY = 2000;
+    private PullToRefreshView mPullToRefreshView;
 
     private StaggeredGridView mGridView;
     private boolean mHasRequestedMore;
@@ -37,6 +41,8 @@ public class StaggeredGridActivity extends Activity implements AbsListView.OnScr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sgv);
+
+        phoenx();
 
         setTitle("SGV");
         mGridView = (StaggeredGridView) findViewById(R.id.grid_view);
@@ -144,5 +150,20 @@ public class StaggeredGridActivity extends Activity implements AbsListView.OnScr
     {
         Toast.makeText(this, "Item Long Clicked: " + position, Toast.LENGTH_SHORT).show();
         return true;
+    }
+
+    public void phoenx(){
+        mPullToRefreshView = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
+        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPullToRefreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPullToRefreshView.setRefreshing(false);
+                    }
+                }, REFRESH_DELAY);
+            }
+        });
     }
 }
