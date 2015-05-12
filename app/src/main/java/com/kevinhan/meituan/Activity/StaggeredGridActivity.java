@@ -4,11 +4,15 @@ package com.kevinhan.meituan.Activity;
  * Created by Kevin han on 2015/5/6.
  */
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-import android.app.ActionBar;
 import android.app.Activity;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,14 +21,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etsy.android.grid.StaggeredGridView;
 import com.kevinhan.meituan.Adapter.SampleAdapter;
+import com.kevinhan.meituan.Data.Business;
 import com.kevinhan.meituan.Data.SampleData;
 import com.kevinhan.meituan.R;
+import com.kevinhan.meituan.Utils.DemoApiTool;
 import com.yalantis.phoenix.PullToRefreshView;
+
+import com.loopj.android.http.*;
+
+import org.apache.http.Header;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.alibaba.fastjson.JSON;
+
 
 public class StaggeredGridActivity extends ActionBarActivity implements AbsListView.OnScrollListener, AbsListView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
@@ -40,6 +57,11 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
 
     private Toolbar mToolbar;
 
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private ListView lvLeftMenu;
+    private AnimationDrawable mAnimationDrawable;
+
     private ArrayList<String> mData;
 
     @Override
@@ -48,7 +70,6 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
         setContentView(R.layout.activity_sgv);
         setToolBar();
         phoenx();
-
         setTitle("SGV");
         mGridView = (StaggeredGridView) findViewById(R.id.grid_view);
 
@@ -148,6 +169,14 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         Toast.makeText(this, "Item Clicked: " + position, Toast.LENGTH_SHORT).show();
+        switch (position){
+            case 0:
+                Log.e(TAG,"0");
+                break;
+            case 1:
+                Log.e(TAG,"0");
+                break;
+        }
     }
 
     @Override
@@ -157,9 +186,6 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
         return true;
     }
 
-    /**
-     * œ¬¿≠À¢–¬
-     */
     public void phoenx(){
         mPullToRefreshView = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
         mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
@@ -169,36 +195,95 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
                     @Override
                     public void run() {
                         mPullToRefreshView.setRefreshing(false);
+                        //RequestDataAPI();//ÁΩëÁªúËØ∑Ê±Ç
+                        RequestHttp();
                     }
                 }, REFRESH_DELAY);
             }
         });
     }
 
-    /**
-     * …Ë÷√ToolBar
-     */
     public void setToolBar(){
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setLogo(R.mipmap.ic_launcher);
-        mToolbar.setTitle("Group-Buying");// ±ÍÃ‚µƒŒƒ◊÷–Ë‘⁄setSupportActionBar÷Æ«∞£¨≤ª»ªª·Œﬁ–ß
-        mToolbar.setSubtitle("Home");
+        mToolbar.setTitle("Group-Buying");
+        /*mToolbar.setSubtitle("Home");*/
         setSupportActionBar(mToolbar);
-        /* ’‚–©Õ®π˝ActionBar¿¥…Ë÷√“≤ «“ª—˘µƒ£¨◊¢“‚“™‘⁄setSupportActionBar(toolbar);÷Æ∫Û£¨≤ª»ªæÕ±®¥Ì¡À */
-        // getSupportActionBar().setTitle("±ÍÃ‚");
-        // getSupportActionBar().setSubtitle("∏±±ÍÃ‚");
-        // getSupportActionBar().setLogo(R.drawable.ic_launcher);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        DrawerLayout mDrawerLayout = (DrawerLayout)findViewById(R.id.dl_left);
+        ListView mDrawerList = (ListView)findViewById(R.id.lv_left_menu);
 
-        /* ≤Àµ•µƒº‡Ã˝ø…“‘‘⁄toolbar¿Ô…Ë÷√£¨“≤ø…“‘œÒActionBarƒ«—˘£¨Õ®π˝ActivityµƒonOptionsItemSelectedªÿµ˜∑Ω∑®¿¥¥¶¿Ì */
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.open, R.string.close) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                //mAnimationDrawable.stop();
+            }
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                //mAnimationDrawable.start();
+            }
+        };
+        mDrawerToggle.syncState();
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        //Â∑¶‰æßËèúÂçï
+        String[] values = new String[]{
+                "ÊàëÁöÑË¥¶Êà∑", "ÂÖ≥‰∫éÈùíÊò•ÈõÜ", "ËÅîÁ≥ªÊàë‰ª¨", "MATERIAL GREY"
+        };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+        mDrawerList.setAdapter(adapter);
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                switch (position) {
+                    case 0:
+                        /*mDrawerList.setBackgroundColor(getResources().getColor(R.color.material_deep_teal_500));
+                        mToolbar.setBackgroundColor(getResources().getColor(R.color.material_deep_teal_500));
+                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.material_deep_teal_500));
+                        mDrawerLayout.closeDrawer(Gravity.START);*/
+                        Log.e(TAG, "ÁÇπÂáª0");
+                        break;
+                    case 1:
+                        /*mDrawerList.setBackgroundColor(getResources().getColor(R.color.red));
+                        toolbar.setBackgroundColor(getResources().getColor(R.color.red));
+                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.red));
+                        mDrawerLayout.closeDrawer(Gravity.START);*/
+                        Log.e(TAG, "ÁÇπÂáª1");
+                        break;
+                    case 2:
+                        /*mDrawerList.setBackgroundColor(getResources().getColor(R.color.blue));
+                        toolbar.setBackgroundColor(getResources().getColor(R.color.blue));
+                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.blue));
+                        mDrawerLayout.closeDrawer(Gravity.START);*/
+                        Log.e(TAG,"ÁÇπÂáª2");
+                        break;
+                    case 3:
+                        /*mDrawerList.setBackgroundColor(getResources().getColor(R.color.material_blue_grey_800));
+                        toolbar.setBackgroundColor(getResources().getColor(R.color.material_blue_grey_800));
+                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.material_blue_grey_800));
+                        mDrawerLayout.closeDrawer(Gravity.START);*/
+                        Log.e(TAG,"ÁÇπÂáª3");
+                        break;
+                }
+
+            }
+        });
+
+        //Âè≥‰∏äËßíËèúÂçï
         mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_settings:
-                        Toast.makeText(StaggeredGridActivity.this, "action_settings", 0).show();
+                        Toast.makeText(StaggeredGridActivity.this, "action_settings", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.action_share:
-                        Toast.makeText(StaggeredGridActivity.this, "action_share", 0).show();
+                        Toast.makeText(StaggeredGridActivity.this, "action_share", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         break;
@@ -207,4 +292,28 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
             }
         });
     }
+
+
+    /**
+     * ËØ∑Ê±ÇÁæéÈ£üÂïÜÊà∑‰ø°ÊÅØ
+     */
+    public void RequestHttp(){
+        String url = "http://api.dianping.com/v1/business/find_businesses?appkey=6522233822&sign=82522B29434E63764CA61B4E23ECA32C06CBA2EB&category=%E7%BE%8E%E9%A3%9F&city=%E4%B8%8A%E6%B5%B7&latitude=31.18268013000488&longitude=121.42769622802734&sort=1&limit=20&offset_type=1&out_offset_type=1&platform=2";
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(url,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // Handle resulting parsed JSON response here
+                Log.e(TAG,response.toString());
+                Business business = JSON.parseObject(response.toString(), Business.class);
+                Log.e(TAG, "getTotal_count" + business.getTotal_count());
+            }
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                // Handle resulting parsed JSON response here
+                Log.e(TAG,response.toString());
+            }
+        });
+    }
+
 }
