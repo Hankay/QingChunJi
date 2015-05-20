@@ -7,19 +7,22 @@
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
 
         <!-- toolbar（actionbar）颜色 -->
-        <item name="colorPrimary">#4876FF</item>
+        <item name="colorPrimary">@color/Black</item>
         <!-- 状态栏颜色 -->
         <item name="colorPrimaryDark">#3A5FCD</item>
+        <!--状态栏字体颜色-->
+        <item name="android:textColorPrimary">@color/White</item>
         <!-- 窗口的背景颜色 -->
-        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowBackground">@color/Black</item>
         <!-- SearchView -->
         <!--<item name="searchViewStyle">@style/MySearchViewStyle</item>-->
         <!--返回键样式-->
         <item name="drawerArrowStyle">@style/AppTheme.DrawerArrowToggle</item>
+        <item name="android:textColor">@color/White</item>n
     </style>
 
     <style name="AppTheme.DrawerArrowToggle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
-        <item name="color">@android:color/white</item>
+        <item name="color">@color/White</item>
     </style>
         <!--
             Theme customizations available in newer API levels can go in
@@ -31,7 +34,14 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
-
+    <!--ActionBar theme-->
+    <!--<style name="ActionBarTheme" parent="Base.ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:background">@color/DimGray</item>
+        <item name="android:textColor">@color/White</item>
+        <item name="android:actionMenuTextColor">@color/White</item>
+        <item name="android:actionBarTabTextStyle">@color/White</item>
+        <item name="android:actionBarItemBackground">@color/White</item>
+    </style>-->
 
     <style name="TwoWayViewBase">
         <item name="android:background">#999999</item>

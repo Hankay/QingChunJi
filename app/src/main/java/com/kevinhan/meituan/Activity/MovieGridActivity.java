@@ -1,11 +1,5 @@
 package com.kevinhan.meituan.Activity;
 
-/**
- * Created by Kevin Han on 2015/4/6.
- */
-import java.util.ArrayList;
-
-import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -13,7 +7,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,24 +19,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etsy.android.grid.StaggeredGridView;
-import com.kevinhan.meituan.Adapter.SampleAdapter;
-import com.kevinhan.meituan.Data.Business;
-import com.kevinhan.meituan.Data.SampleData;
+import com.kevinhan.meituan.Adapter.FoodGridAdapter;
+import com.kevinhan.meituan.Data.Businesses;
 import com.kevinhan.meituan.R;
+import com.kevinhan.meituan.Utils.AsyncHttpFoodGrid;
 import com.yalantis.phoenix.PullToRefreshView;
 
-import com.loopj.android.http.*;
 
-import org.apache.http.Header;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import com.alibaba.fastjson.JSON;
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class StaggeredGridActivity extends ActionBarActivity implements AbsListView.OnScrollListener, AbsListView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+public class MovieGridActivity extends ActionBarActivity implements AbsListView.OnScrollListener, AbsListView.OnItemClickListener, AdapterView.OnItemLongClickListener ,AsyncHttpFoodGrid.IcallBack{
 
-    private static final String TAG = "StaggeredGridActivity";
+    private static final String TAG = "FoodGridActivity";
     public static final String SAVED_DATA_KEY = "SAVED_DATA";
 
     public static final int REFRESH_DELAY = 2000;
@@ -51,25 +40,30 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
 
     private StaggeredGridView mGridView;
     private boolean mHasRequestedMore;
-    private SampleAdapter mAdapter;
+    private FoodGridAdapter mAdapter;
 
     private Toolbar mToolbar;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-    private ListView lvLeftMenu;
     private AnimationDrawable mAnimationDrawable;
 
     private ArrayList<String> mData;
+    private List<Businesses> businessesList;
+
+
+    private AsyncHttpFoodGrid asyncHttpFoodGrid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sgv);
+        setContentView(R.layout.activity_sgv_food);
         setToolBar();
-        //phoenx();
+        asyncHttpFoodGrid = new AsyncHttpFoodGrid(this);
+        asyncHttpFoodGrid.RequestHttp();
+        phoenx();
         setTitle("SGV");
-        mGridView = (StaggeredGridView) findViewById(R.id.grid_view);
+        mGridView = (StaggeredGridView) findViewById(R.id.grid_view_food);
 
         LayoutInflater layoutInflater = getLayoutInflater();
 
@@ -77,15 +71,16 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
         View footer = layoutInflater.inflate(R.layout.list_item_header_footer, null);
         TextView txtHeaderTitle = (TextView) header.findViewById(R.id.txt_title);
         TextView txtFooterTitle =  (TextView) footer.findViewById(R.id.txt_title);
-        txtHeaderTitle.setText("Welcome!");
+        txtHeaderTitle.setText("Welcome Food!");
         txtFooterTitle.setText("THE FOOTER!");
 
-        //mGridView.addHeaderView(header);
-        //mGridView.addFooterView(footer);
-        mAdapter = new SampleAdapter(this, R.id.txt_line1);
+        mGridView.addHeaderView(header);
+        mGridView.addFooterView(footer);
+        Log.e(TAG, "到这");
+
 
         // do we have saved data?
-        if (savedInstanceState != null) {
+        /*if (savedInstanceState != null) {
             mData = savedInstanceState.getStringArrayList(SAVED_DATA_KEY);
         }
 
@@ -95,7 +90,9 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
 
         for (String data : mData) {
             mAdapter.add(data);
-        }
+        }*/
+
+
 
         mGridView.setAdapter(mAdapter);
         mGridView.setOnScrollListener(this);
@@ -152,7 +149,7 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
         }
     }
 
-    private void onLoadMoreItems() {
+/*    private void onLoadMoreItems() {
         final ArrayList<String> sampleData = SampleData.generateSampleData();
         for (String data : sampleData) {
             mAdapter.add(data);
@@ -162,32 +159,18 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
         // notify the adapter that we can update now
         mAdapter.notifyDataSetChanged();
         mHasRequestedMore = false;
-    }
+    }*/
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         Toast.makeText(this, "Item Clicked: " + position, Toast.LENGTH_SHORT).show();
         switch (position){
             case 0:
-                Log.e(TAG,"美食");
-                Intent intent_food = new Intent(StaggeredGridActivity.this,FoodGridActivity.class);
-                startActivity(intent_food);
+                Log.e(TAG,"0");
                 break;
             case 1:
-                Log.e(TAG,"电影");
-                Intent intent_movie = new Intent(StaggeredGridActivity.this,MovieGridActivity.class);
-                startActivity(intent_movie);
+                Log.e(TAG,"0");
                 break;
-            case 2:
-                Log.e(TAG,"娱乐");
-                Intent intent_amusement = new Intent(StaggeredGridActivity.this,AmusementGridActivity.class);
-                startActivity(intent_amusement);
-                break;
-            case 3:
-                Log.e(TAG,"酒店");
-                Intent intent_hotel = new Intent(StaggeredGridActivity.this,HotelGridActivity.class);
-                startActivity(intent_hotel);
-
         }
     }
 
@@ -211,7 +194,7 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
                     public void run() {
                         mPullToRefreshView.setRefreshing(false);
                         //RequestDataAPI();//网络请求
-                        RequestHttp();
+                        //RequestHttp();
                     }
                 }, REFRESH_DELAY);
             }
@@ -221,13 +204,12 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
     public void setToolBar(){
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setLogo(R.mipmap.ic_launcher);
-        mToolbar.setTitle("青春集 首页");
-        //mToolbar.setSubtitleTextColor();
+        mToolbar.setTitle("Group-Buying");
         /*mToolbar.setSubtitle("Home");*/
         setSupportActionBar(mToolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        final DrawerLayout mDrawerLayout = (DrawerLayout)findViewById(R.id.dl_left);
+        DrawerLayout mDrawerLayout = (DrawerLayout)findViewById(R.id.dl_left);
         ListView mDrawerList = (ListView)findViewById(R.id.lv_left_menu);
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.open, R.string.close) {
@@ -258,21 +240,31 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
                                     int position, long id) {
                 switch (position) {
                     case 0:
-                        mDrawerLayout.closeDrawer(Gravity.START);
-                        Intent intent_login = new Intent(StaggeredGridActivity.this,LoginActivity.class);
-                        startActivity(intent_login);
+                        /*mDrawerList.setBackgroundColor(getResources().getColor(R.color.material_deep_teal_500));
+                        mToolbar.setBackgroundColor(getResources().getColor(R.color.material_deep_teal_500));
+                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.material_deep_teal_500));
+                        mDrawerLayout.closeDrawer(Gravity.START);*/
                         Log.e(TAG, "点击0");
                         break;
                     case 1:
-                        mDrawerLayout.closeDrawer(Gravity.START);
+                        /*mDrawerList.setBackgroundColor(getResources().getColor(R.color.red));
+                        toolbar.setBackgroundColor(getResources().getColor(R.color.red));
+                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.red));
+                        mDrawerLayout.closeDrawer(Gravity.START);*/
                         Log.e(TAG, "点击1");
                         break;
                     case 2:
-                        mDrawerLayout.closeDrawer(Gravity.START);
+                        /*mDrawerList.setBackgroundColor(getResources().getColor(R.color.blue));
+                        toolbar.setBackgroundColor(getResources().getColor(R.color.blue));
+                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.blue));
+                        mDrawerLayout.closeDrawer(Gravity.START);*/
                         Log.e(TAG,"点击2");
                         break;
                     case 3:
-                        mDrawerLayout.closeDrawer(Gravity.START);
+                        /*mDrawerList.setBackgroundColor(getResources().getColor(R.color.material_blue_grey_800));
+                        toolbar.setBackgroundColor(getResources().getColor(R.color.material_blue_grey_800));
+                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.material_blue_grey_800));
+                        mDrawerLayout.closeDrawer(Gravity.START);*/
                         Log.e(TAG,"点击3");
                         break;
                 }
@@ -286,10 +278,10 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_settings:
-                        Toast.makeText(StaggeredGridActivity.this, "action_settings", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MovieGridActivity.this, "action_settings", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.action_share:
-                        Toast.makeText(StaggeredGridActivity.this, "action_share", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MovieGridActivity.this, "action_share", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         break;
@@ -299,27 +291,11 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
         });
     }
 
-
-    /**
-     * 请求美食商户信息
-     */
-    public void RequestHttp(){
-        String url = "http://api.dianping.com/v1/business/find_businesses?appkey=6522233822&sign=82522B29434E63764CA61B4E23ECA32C06CBA2EB&category=%E7%BE%8E%E9%A3%9F&city=%E4%B8%8A%E6%B5%B7&latitude=31.18268013000488&longitude=121.42769622802734&sort=1&limit=20&offset_type=1&out_offset_type=1&platform=2";
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.get(url,new JsonHttpResponseHandler(){
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                // Handle resulting parsed JSON response here
-                Log.e(TAG,response.toString());
-                Business business = JSON.parseObject(response.toString(), Business.class);
-                Log.e(TAG, "getTotal_count" + business.getTotal_count());
-            }
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                // Handle resulting parsed JSON response here
-                Log.e(TAG,response.toString());
-            }
-        });
+    @Override
+    public void callBackResult(List<Businesses> businessesList) {
+        //Log.e(TAG,"businessesList->"+businessesList);
+        mAdapter = new FoodGridAdapter(this,businessesList);
+        mGridView.setAdapter(mAdapter);
     }
-
 }
+

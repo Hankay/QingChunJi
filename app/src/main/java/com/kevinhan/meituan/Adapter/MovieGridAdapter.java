@@ -1,38 +1,42 @@
 package com.kevinhan.meituan.Adapter;
 
 /**
- * Created by Kevin han on 2015/5/14.
+ * Created by Kevin han on 2015/5/6.
  */
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.etsy.android.grid.util.DynamicHeightImageView;
 import com.etsy.android.grid.util.DynamicHeightTextView;
 import com.kevinhan.meituan.Data.Business;
+import com.kevinhan.meituan.Data.Businesses;
 import com.kevinhan.meituan.R;
-
-import java.util.ArrayList;
-import java.util.Random;
-
-/**
- * Created by Kevin han on 2015/5/6.
- */
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /***
  * ADAPTER
  */
 
-public class SampleAdapter extends ArrayAdapter<String> {
+public class MovieGridAdapter extends BaseAdapter {
 
     private static final String TAG = "SampleAdapter";
+    private Business business ;
+    private Businesses businesses;
+
     static class ViewHolder {
         DynamicHeightImageView lvLineone;
         DynamicHeightTextView txtLineOne;
@@ -42,19 +46,36 @@ public class SampleAdapter extends ArrayAdapter<String> {
     private final LayoutInflater mLayoutInflater;
     private final Random mRandom;
     private final ArrayList<Integer> mBackgroundColors;
-
+    private final Context mContext;
+    private List<Businesses> mBusinessesList;
     private static final SparseArray<Double> sPositionHeightRatios = new SparseArray<Double>();
 
-    public SampleAdapter(final Context context, final int textViewResourceId) {
-        super(context, textViewResourceId);
+    public MovieGridAdapter(Context context, List<Businesses> businessesList) {
+        mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
+        mBusinessesList = businessesList;
         mRandom = new Random();
         mBackgroundColors = new ArrayList<Integer>();
-        mBackgroundColors.add(R.color.orange);
-        mBackgroundColors.add(R.color.green);
-        mBackgroundColors.add(R.color.blue);
-        mBackgroundColors.add(R.color.yellow);
         mBackgroundColors.add(R.color.grey);
+        mBackgroundColors.add(R.color.grey);
+        mBackgroundColors.add(R.color.grey);
+        mBackgroundColors.add(R.color.grey);
+        mBackgroundColors.add(R.color.grey);
+    }
+
+    @Override
+    public int getCount() {
+        return mBusinessesList.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return mBusinessesList.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
@@ -81,15 +102,28 @@ public class SampleAdapter extends ArrayAdapter<String> {
         convertView.setBackgroundResource(mBackgroundColors.get(backgroundIndex));
         //convertView.setBackgroundResource(R.mipmap.thumb);
         Log.d(TAG, "getView position:" + position + " h:" + positionHeight);
+        //单行数据
+        businesses = mBusinessesList.get(position);
+
+        //图片url
+        String imagerUrl = businesses.getPhoto_url();
+        DisplayImageOptions options =new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.thumb)
+                .showImageOnFail(R.drawable.thumb)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
+        ImageLoader.getInstance().displayImage(imagerUrl,vh.lvLineone,options);
 
         vh.lvLineone.setHeightRatio(positionHeight);
         //vh.lvLineone.setBackgroundResource(R.drawable.thumb);
         vh.txtLineOne.setHeightRatio(positionHeight);
-        vh.txtLineOne.setText(getItem(position));
+        vh.txtLineOne.setText(businesses.getName());
         vh.btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                Toast.makeText(getContext(), "Button Clicked Position " +
+                Toast.makeText(mContext, "Button Clicked Position " +
                         position, Toast.LENGTH_SHORT).show();
             }
         });
@@ -115,4 +149,3 @@ public class SampleAdapter extends ArrayAdapter<String> {
         return (mRandom.nextDouble() / 2.0) + 1.0; // height will be 1.0 - 1.5 the width
     }
 }
-

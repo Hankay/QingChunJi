@@ -12,6 +12,16 @@ public class Business {
     private int count;
     private List<Businesses> businesses = new ArrayList<Businesses>();
 
+    public Business(){}
+
+    public Business(String status,int total_count,int count,List<Businesses> businesses){
+        this.status = status;
+        this.total_count = total_count;
+        this.count = count;
+        this.businesses = businesses;
+    }
+
+
     public String getStatus() {
         return status;
     }
@@ -43,4 +53,5 @@ public class Business {
     public void setBusinesses(List<Businesses> businesses) {
         this.businesses = businesses;
     }
+
 }

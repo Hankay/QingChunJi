@@ -1,30 +1,41 @@
 package com.kevinhan.meituan.Activity;
 
 /**
- * Created by Kevin han on 2015/5/6.
+ * Created by Kevin Han on 2015/5/20.
  */
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kevinhan.meituan.Adapter.FoodGridAdapter;
+import com.kevinhan.meituan.Adapter.SampleAdapter;
 import com.kevinhan.meituan.Data.Businesses;
+import com.kevinhan.meituan.Data.SampleData;
 import com.kevinhan.meituan.R;
 
 import java.util.List;
 
-public class ListViewActivity extends Activity implements AdapterView.OnItemClickListener {
+
+/**
+ * Created by Kevin han on 2015/5/6.
+ */
+
+public class LoginActivity extends Activity /*implements AdapterView.OnItemClickListener*/ {
 
     private List<Businesses> businessesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_view);
+        setContentView(R.layout.activity_login);
 
-        setTitle("ListView");
+        /*setTitle("ListView");
 
         final ListView listView = (ListView) findViewById(R.id.list_view);
 
@@ -40,18 +51,18 @@ public class ListViewActivity extends Activity implements AdapterView.OnItemClic
         listView.addHeaderView(header);
         listView.addFooterView(footer);
 
-        final FoodGridAdapter adapter = new FoodGridAdapter(this,businessesList);
+        final SampleAdapter adapter = new SampleAdapter(this,R.id.list_view);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
 
-        /*final List<String> sampleData = SampleData.generateSampleData();
+        final List<String> sampleData = SampleData.generateSampleData();
         for (String data : sampleData) {
             adapter.add(data);
         }*/
     }
 
-    @Override
+/*    @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         Toast.makeText(this, "Item Clicked: " + position, Toast.LENGTH_SHORT).show();
-    }
+    }*/
 }

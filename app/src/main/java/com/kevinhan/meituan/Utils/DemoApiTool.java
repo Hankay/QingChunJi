@@ -1,4 +1,4 @@
-package com.kevinhan.meituan.Utils;
+/*package com.kevinhan.meituan.Utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,26 +20,26 @@ import org.apache.commons.httpclient.params.HttpClientParams;
 import org.apache.commons.httpclient.util.URIUtil;
 
 
-/**
- * Android°æ±¾API¹¤¾ß
+*//**
+ * Androidï¿½æ±¾APIï¿½ï¿½ï¿½ï¿½
  * <p>
  *
  * @author : xiaopeng.li
  *         <p>
  * @version 1.0 2013-1-23
  * @since dianping-java-samples 1.0
- */
+ *//*
 public class DemoApiTool
 {
 
-    /**
-     * »ñÈ¡ÇëÇó×Ö·û´®
+    *//**
+     * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½
      *
      * @param appKey
      * @param secret
      * @param paramMap
      * @return
-     */
+     *//*
     public static String getQueryString(String appKey, String secret, Map<String, String> paramMap)
     {
         String sign = sign(appKey, secret, paramMap);
@@ -54,14 +54,14 @@ public class DemoApiTool
         return queryString;
     }
 
-    /**
-     * »ñÈ¡ÇëÇó×Ö·û´®£¬²ÎÊýÖµ½øÐÐUTF-8´¦Àí
+    *//**
+     * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½UTF-8ï¿½ï¿½ï¿½ï¿½
      *
      * @param appKey
      * @param secret
      * @param paramMap
      * @return
-     */
+     *//*
     public static String getUrlEncodedQueryString(String appKey, String secret, Map<String, String> paramMap)
     {
         String sign = sign(appKey, secret, paramMap);
@@ -83,15 +83,15 @@ public class DemoApiTool
         return queryString;
     }
 
-    /**
-     * ÇëÇóAPI
+    *//**
+     * ï¿½ï¿½ï¿½ï¿½API
      *
      * @param apiUrl
      * @param appKey
      * @param secret
      * @param paramMap
      * @return
-     */
+     *//*
     public static String requestApi(String apiUrl, String appKey, String secret, Map<String, String> paramMap)
     {
         String queryString = getQueryString(appKey, secret, paramMap);
@@ -134,21 +134,21 @@ public class DemoApiTool
 
     }
 
-    /**
-     * Ç©Ãû
+    *//**
+     * Ç©ï¿½ï¿½
      *
      * @param appKey
      * @param secret
      * @param paramMap
      * @return
-     */
+     *//*
     public static String sign(String appKey, String secret, Map<String, String> paramMap)
     {
-        // ²ÎÊýÃûÅÅÐò
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         String[] keyArray = paramMap.keySet().toArray(new String[0]);
         Arrays.sort(keyArray);
 
-        // Æ´½Ó²ÎÊý
+        // Æ´ï¿½Ó²ï¿½ï¿½ï¿½
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(appKey);
         for (String key : keyArray)
@@ -159,10 +159,10 @@ public class DemoApiTool
         stringBuilder.append(secret);
         String codes = stringBuilder.toString();
 
-        // SHA-1Ç©Ãû
+        // SHA-1Ç©ï¿½ï¿½
         // For Android
         String sign = new String(Hex.encodeHex(DigestUtils.sha(codes))).toUpperCase();
 
         return sign;
     }
-}
+}*/

@@ -10,18 +10,22 @@
         android:id="@+id/dl_left"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
-        <com.etsy.android.grid.StaggeredGridView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/grid_view"
+        <!--主布局-->
+        <com.yalantis.phoenix.PullToRefreshView
+            android:id="@+id/pull_to_refresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:item_margin="10dp"
-            app:column_count="@integer/grid_column_count" />
+            android:layout_height="match_parent">
 
+            <com.etsy.android.grid.StaggeredGridView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/grid_view_movie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:item_margin="0dp"
+                app:column_count="@integer/grid_column_count" />
 
+        </com.yalantis.phoenix.PullToRefreshView>
         <!--侧滑菜单-->
         <LinearLayout
             android:layout_width="match_parent"

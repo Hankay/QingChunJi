@@ -105,6 +105,58 @@ public class Businesses{
     private int has_online_reservation;
     private String online_reservation_url;
 
+    public Businesses(){}
+
+    public Businesses(String business_id,String name,String branch_name,String address,String telephone,
+                      String city,List<String> regions,List<String> categories,long latitude,long longitude,
+                      int avg_rating,String rating_img_url,String rating_s_img_url,int product_grade,
+                      int decoration_grade,int service_grade,int product_score,int decoration_score,
+                      int service_score,int avg_price,int review_count,String review_list_url,int distance,
+                      String business_url,String photo_url,String s_photo_url,int photo_count,String photo_list_url,
+                      int has_coupon,int coupon_id,String coupon_description,String coupon_url,int has_deal,
+                      int deal_count,List<Deals> dealses,int has_online_reservation,String online_reservation_url){
+
+        this.business_id = business_id;
+        this.name = name;
+        this.branch_name = branch_name;
+        this.address = address;
+        this.telephone = telephone;
+        this.city = city;
+        this.regions = regions;
+        this.categories = categories;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.avg_rating = avg_rating;
+        this.rating_img_url = rating_img_url;
+        this.rating_s_img_url = rating_s_img_url;
+        this.product_grade = product_grade;
+        this.decoration_grade = decoration_grade;
+        this.service_grade = service_grade;
+        this.product_score = product_score;
+        this.decoration_score = decoration_score;
+        this.service_score = service_score;
+        this.avg_price = avg_price;
+        this.review_count = review_count;
+        this.review_list_url = review_list_url;
+        this.distance = distance;
+        this.business_url = business_url;
+        this.photo_url = photo_url;
+        this.s_photo_url = s_photo_url;
+        this.photo_count = photo_count;
+        this.photo_list_url = photo_list_url;
+        this.has_coupon = has_coupon;
+        this.coupon_id = coupon_id;
+        this.coupon_description = coupon_description;
+        this.coupon_url = coupon_url;
+        this.has_deal = has_deal;
+        this.deal_count = deal_count;
+        this.dealses = dealses;
+        this.has_online_reservation = has_online_reservation;
+        this.online_reservation_url = online_reservation_url;
+
+    }
+
+
     public String getBusiness_id() {
         return business_id;
     }
