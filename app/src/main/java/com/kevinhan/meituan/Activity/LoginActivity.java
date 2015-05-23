@@ -5,10 +5,12 @@ package com.kevinhan.meituan.Activity;
  */
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,13 +30,13 @@ import java.util.List;
 
 public class LoginActivity extends Activity /*implements AdapterView.OnItemClickListener*/ {
 
-    private List<Businesses> businessesList;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        init();
         /*setTitle("ListView");
 
         final ListView listView = (ListView) findViewById(R.id.list_view);
@@ -65,4 +67,17 @@ public class LoginActivity extends Activity /*implements AdapterView.OnItemClick
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         Toast.makeText(this, "Item Clicked: " + position, Toast.LENGTH_SHORT).show();
     }*/
+
+
+    public void init(){
+        button = (Button)findViewById(R.id.bt_login);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,StaggeredGridActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
 }

@@ -1,6 +1,5 @@
 package com.kevinhan.meituan.Utils;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
@@ -16,17 +15,16 @@ import org.json.JSONObject;
 import java.util.List;
 
 /**
- * Created by Kevin han on 2015/5/15.
+ * Created by Kevin han on 2015/5/22.
  */
-public class AsyncHttpFoodGrid {
-
+public class AsyncHttpFood {
     String TAG = "AsyncHttpFoodGrid";
     private List<Businesses> businessesList;
     private Business business;
     private IcallBack mIcallBack;
 
 
-    public  AsyncHttpFoodGrid(IcallBack icallBack){
+    public AsyncHttpFood(IcallBack icallBack){
         mIcallBack = icallBack;
     }
 

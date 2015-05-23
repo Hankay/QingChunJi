@@ -1,34 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/auto_scroll_view_pager_inner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp_40"
-        android:layout_marginTop="@dimen/dp_20"
-        android:text="呵呵" />
+    <LinearLayout
+        android:layout_width="720px"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal|top">
 
-    <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="@dimen/view_pager_witdh"
-        android:layout_height="@dimen/view_pager_height"
-        android:layout_below="@+id/auto_scroll_view_pager_inner" />
 
-    <TextView
-        android:id="@+id/view_pager_index"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/view_pager"
-        android:layout_centerHorizontal="true"
-        android:textSize="14sp" />
+        <ImageView
+            android:layout_width="720px"
+            android:layout_height="480px"
+            android:id="@+id/iv_food"
+            android:layout_gravity="center_horizontal|top" />
 
-    <!--<include
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        layout="@layout/trinea_info" />-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="720px"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|top"
+            android:background="@drawable/boder">
 
-</RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="分店："
+                android:textSize="40px"
+                android:id="@+id/tv_name_one"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="青春集店"
+                android:textSize="30px"
+                android:id="@+id/tv_name"
+                android:gravity="center_vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="720px"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|top"
+            android:background="@drawable/boder">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="地址："
+                android:textSize="40px"
+                android:id="@+id/tv_address_one"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="720px"
+                android:layout_height="wrap_content"
+                android:text="青春集"
+                android:textSize="30px"
+                android:id="@+id/tv_address"
+                android:gravity="center_vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="720px"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|top"
+            android:background="@drawable/boder">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电话："
+                android:textSize="40px"
+                android:id="@+id/tv_telephone_one"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0000"
+                android:textSize="30px"
+                android:id="@+id/tv_telephone"
+                android:gravity="center_vertical" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="拨打电话"
+            android:textColor="@color/Black"
+            android:background="@color/grey"
+            android:layout_gravity="right"
+            android:id="@+id/bt_telephone" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="720px"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|top"
+            android:background="@drawable/boder">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="团购详情："
+                android:textSize="40px"
+                android:id="@+id/tv_deals" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="720px"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:textSize="30px"
+            android:id="@+id/tv_deals1"
+            android:layout_gravity="center_horizontal|top"
+            android:background="@drawable/boder"/>
+
+        <TextView
+            android:layout_width="720px"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:textSize="30px"
+            android:id="@+id/tv_deals2"
+            android:layout_gravity="center_horizontal|top"
+            android:background="@drawable/boder"/>
+
+
+    </LinearLayout>
+
+
+</ScrollView>

@@ -54,4 +54,9 @@ public class Business {
         this.businesses = businesses;
     }
 
+    @Override
+    public String toString() {
+
+        return super.toString();
+    }
 }

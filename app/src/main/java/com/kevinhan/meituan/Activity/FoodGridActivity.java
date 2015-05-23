@@ -1,5 +1,6 @@
 package com.kevinhan.meituan.Activity;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.sax.StartElementListener;
@@ -168,7 +169,14 @@ import java.util.List;
         Toast.makeText(this, "Item Clicked: " + position, Toast.LENGTH_SHORT).show();
         switch (position){
             case 0:
-                Log.e(TAG,"0");
+                //Log.e(TAG,"0");
+                Businesses businesses = businessesList.get(position);
+                //Log.e(TAG,"-------"+businesses.getDealses());
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("businesses",businesses);
+                Intent intent0 = new Intent(FoodGridActivity.this,FoodActivity.class);
+                intent0.putExtras(bundle);
+                startActivity(intent0);
                 break;
             case 1:
                 Log.e(TAG,"0");
@@ -231,7 +239,7 @@ import java.util.List;
 
         //左侧菜单
         String[] values = new String[]{
-                "我的账户", "关于青春集", "联系我们", "版本更新"
+                "& 我的青春集", "& 好友动态", "& 校园新闻", "& 关于我们","& 设置","& 版本更新"
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
@@ -298,6 +306,8 @@ import java.util.List;
      public void callBackResult(List<Businesses> businessesList) {
          //Log.e(TAG,"businessesList->"+businessesList);
          mAdapter = new FoodGridAdapter(this,businessesList);
+         this.businessesList = businessesList;
+         Log.e(TAG,"-------"+businessesList.get(0).toString());
          mGridView.setAdapter(mAdapter);
      }
  }

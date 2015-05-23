@@ -30,6 +30,7 @@ android {
 repositories {
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -44,6 +45,4 @@ dependencies {
     compile 'com.loopj.android:android-async-http:1.4.5'
     compile files('libs/fastjson-1.1.43.android.jar')
     compile files('libs/universal-image-loader-1.9.3.jar')
-    compile 'cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2'
-    compile 'cn.trinea.android.common:trinea-android-common:4.2.15'
 }

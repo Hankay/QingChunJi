@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="180px"
+        android:layout_height="180px"
+        android:id="@+id/iv_about_us"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="320px"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="青春集"
+        android:textSize="40px"
+        android:id="@+id/tv_about_us"
+        android:layout_below="@+id/iv_about_us"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30px"/>
+
+    <TextView
+        android:layout_width="360px"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="青春集是面向高校的一个集团购、生活信息、服务信息的服务平台"
+        android:id="@+id/textView"
+        android:layout_below="@+id/tv_about_us"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="360px"
+        android:layout_height="90px"
+        android:text="客服电话"
+        android:background="@color/grey"
+        android:id="@+id/bt_aboutus_service"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30px"/>
+
+
+</RelativeLayout>

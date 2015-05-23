@@ -9,15 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.*;
 
-import com.kevinhan.meituan.Adapter.FoodGridAdapter;
-import com.kevinhan.meituan.Data.Businesses;
+import com.kevinhan.meituan.Adapter.SampleAdapter;
+import com.kevinhan.meituan.Data.SampleData;
 import com.kevinhan.meituan.R;
 
 import java.util.List;
 
 public class ListViewActivity extends Activity implements AdapterView.OnItemClickListener {
-
-    private List<Businesses> businessesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +38,14 @@ public class ListViewActivity extends Activity implements AdapterView.OnItemClic
         listView.addHeaderView(header);
         listView.addFooterView(footer);
 
-        final FoodGridAdapter adapter = new FoodGridAdapter(this,businessesList);
+        final SampleAdapter adapter = new SampleAdapter(this, R.id.txt_line1);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
 
-        /*final List<String> sampleData = SampleData.generateSampleData();
+        final List<String> sampleData = SampleData.generateSampleData();
         for (String data : sampleData) {
             adapter.add(data);
-        }*/
+        }
     }
 
     @Override

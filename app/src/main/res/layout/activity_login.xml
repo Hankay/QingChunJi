@@ -8,7 +8,7 @@
         android:orientation="horizontal"
         android:layout_width="600px"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
+        android:background="@color/grey"
         android:layout_marginTop="400px"
         android:layout_alignParentEnd="false"
         android:layout_centerHorizontal="true">
@@ -16,8 +16,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/Black"
             android:text="用户名："
-            android:id="@+id/textView" />
+            android:id="@+id/tv_login_name" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -25,7 +26,7 @@
             android:inputType="textPersonName"
             android:text=""
             android:ems="10"
-            android:id="@+id/editText" />
+            android:id="@+id/et_login_name" />
     </LinearLayout>
 
     <LinearLayout
@@ -33,7 +34,7 @@
         android:orientation="horizontal"
         android:layout_width="600px"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
+        android:background="@color/grey"
         android:layout_below="@+id/ll_login_name"
         android:layout_marginTop="50px"
         android:layout_centerHorizontal="true">
@@ -41,8 +42,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/Black"
             android:text="密码："
-            android:id="@+id/textView2"
+            android:id="@+id/tv_login_password"
             />
 
         <EditText
@@ -50,7 +52,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editText2" />
+            android:id="@+id/et_login_password" />
 
     </LinearLayout>
 
@@ -58,17 +60,17 @@
         android:layout_width="300px"
         android:layout_height="wrap_content"
         android:text="登录"
-        android:id="@+id/button"
-        android:background="@color/blue"
+        android:id="@+id/bt_login"
+        android:background="@color/grey"
         android:layout_below="@+id/ll_login_password"
-        android:textColor="@color/White"
+        android:textColor="@color/Black"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50px"/>
 
     <ImageView
         android:layout_width="180px"
         android:layout_height="180px"
-        android:id="@+id/imageView"
+        android:id="@+id/iv_me"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:background="@drawable/thumb"

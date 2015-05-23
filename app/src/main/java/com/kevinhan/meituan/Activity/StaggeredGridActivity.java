@@ -247,7 +247,7 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
 
         //左侧菜单
         String[] values = new String[]{
-                "我的账户", "关于青春集", "联系我们", "版本更新"
+                "& 我的青春集", "& 好友动态", "& 校园新闻", "& 关于我们","& 设置","& 版本更新"
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
@@ -265,14 +265,32 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
                         break;
                     case 1:
                         mDrawerLayout.closeDrawer(Gravity.START);
+                        Intent intent_friends = new Intent(StaggeredGridActivity.this,FriendShareActivity.class);
+                        startActivity(intent_friends);
                         Log.e(TAG, "点击1");
                         break;
                     case 2:
                         mDrawerLayout.closeDrawer(Gravity.START);
+                        Intent intent_news = new Intent(StaggeredGridActivity.this,SchoolNewsActivity.class);
+                        startActivity(intent_news);
                         Log.e(TAG,"点击2");
                         break;
                     case 3:
                         mDrawerLayout.closeDrawer(Gravity.START);
+                        Intent intent_aboutus = new Intent(StaggeredGridActivity.this,AboutUsActivity.class);
+                        startActivity(intent_aboutus);
+                        Log.e(TAG,"点击3");
+                        break;
+                    case 4:
+                        mDrawerLayout.closeDrawer(Gravity.START);
+                        Intent intent_setting = new Intent(StaggeredGridActivity.this,SettingActivity.class);
+                        startActivity(intent_setting);
+                        Log.e(TAG,"点击3");
+                        break;
+                    case 5:
+                        mDrawerLayout.closeDrawer(Gravity.START);
+                        Intent intent_updates = new Intent(StaggeredGridActivity.this,UpdatesActivity.class);
+                        startActivity(intent_updates);
                         Log.e(TAG,"点击3");
                         break;
                 }
