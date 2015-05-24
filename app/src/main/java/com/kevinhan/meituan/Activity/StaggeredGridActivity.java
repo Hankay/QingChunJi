@@ -112,14 +112,11 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.col1:
+            case R.id.menu_star:
                 mGridView.setColumnCount(1);
                 break;
-            case R.id.col2:
+            case R.id.menu_share:
                 mGridView.setColumnCount(2);
-                break;
-            case R.id.col3:
-                mGridView.setColumnCount(3);
                 break;
         }
         return true;
@@ -221,7 +218,7 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
     public void setToolBar(){
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setLogo(R.mipmap.ic_launcher);
-        mToolbar.setTitle("青春集 首页");
+        mToolbar.setTitle("首页");
         //mToolbar.setSubtitleTextColor();
         /*mToolbar.setSubtitle("Home");*/
         setSupportActionBar(mToolbar);
@@ -303,11 +300,11 @@ public class StaggeredGridActivity extends ActionBarActivity implements AbsListV
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_settings:
-                        Toast.makeText(StaggeredGridActivity.this, "action_settings", Toast.LENGTH_SHORT).show();
+                    case R.id.menu_star:
+                        Toast.makeText(StaggeredGridActivity.this, "已关注", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.action_share:
-                        Toast.makeText(StaggeredGridActivity.this, "action_share", Toast.LENGTH_SHORT).show();
+                    case R.id.menu_share:
+                        Toast.makeText(StaggeredGridActivity.this, "分享", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         break;

@@ -1,2 +1,3 @@
-# MeiTuan
-类似美团的团购类Android App
+# 青春集
+团购、生活信息、服务信息类Android App
+

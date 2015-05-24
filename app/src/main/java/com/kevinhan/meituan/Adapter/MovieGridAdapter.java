@@ -87,7 +87,7 @@ public class MovieGridAdapter extends BaseAdapter {
             vh = new ViewHolder();
             vh.lvLineone = (DynamicHeightImageView)convertView.findViewById(R.id.iv_line1);
             vh.txtLineOne = (DynamicHeightTextView) convertView.findViewById(R.id.txt_line1);
-            vh.btnGo = (Button) convertView.findViewById(R.id.btn_go);
+            //vh.btnGo = (Button) convertView.findViewById(R.id.btn_go);
 
             convertView.setTag(vh);
         }

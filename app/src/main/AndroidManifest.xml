@@ -24,8 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.StaggeredGridActivityFragment" />
-        <activity android:name=".Activity.StaggeredGridEmptyViewActivity" />
         <activity android:name=".Activity.ListViewActivity" />
         <activity android:name=".Activity.FoodGridActivity" />
         <activity android:name=".Activity.MovieGridActivity" />

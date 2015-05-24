@@ -19,12 +19,12 @@
         android:layout_height="wrap_content"
         android:gravity="center"/>
 
-    <Button
+    <!--<Button
         android:id="@+id/btn_go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|right"
-        android:text="喜爱" />
+        android:text="love" />-->
 
 
 </FrameLayout>

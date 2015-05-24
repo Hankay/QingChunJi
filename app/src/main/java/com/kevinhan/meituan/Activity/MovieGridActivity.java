@@ -109,14 +109,11 @@ public class MovieGridActivity extends ActionBarActivity implements AbsListView.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.col1:
+            case R.id.menu_star:
                 mGridView.setColumnCount(1);
                 break;
-            case R.id.col2:
+            case R.id.menu_share:
                 mGridView.setColumnCount(2);
-                break;
-            case R.id.col3:
-                mGridView.setColumnCount(3);
                 break;
         }
         return true;
@@ -277,11 +274,11 @@ public class MovieGridActivity extends ActionBarActivity implements AbsListView.
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_settings:
-                        Toast.makeText(MovieGridActivity.this, "action_settings", Toast.LENGTH_SHORT).show();
+                    case R.id.menu_star:
+                        Toast.makeText(MovieGridActivity.this, "已关注", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.action_share:
-                        Toast.makeText(MovieGridActivity.this, "action_share", Toast.LENGTH_SHORT).show();
+                    case R.id.menu_share:
+                        Toast.makeText(MovieGridActivity.this, "分享", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         break;

@@ -66,8 +66,8 @@ public class SampleAdapter extends ArrayAdapter<String> {
             vh = new ViewHolder();
             vh.lvLineone = (DynamicHeightImageView)convertView.findViewById(R.id.iv_line1);
             vh.txtLineOne = (DynamicHeightTextView) convertView.findViewById(R.id.txt_line1);
-            vh.btnGo = (Button) convertView.findViewById(R.id.btn_go);
-
+            //vh.btnGo = (Button) convertView.findViewById(R.id.btn_go);
+            vh.lvLineone.setAlpha(200);
             convertView.setTag(vh);
         }
         else {
@@ -86,13 +86,13 @@ public class SampleAdapter extends ArrayAdapter<String> {
         //vh.lvLineone.setBackgroundResource(R.drawable.thumb);
         vh.txtLineOne.setHeightRatio(positionHeight);
         vh.txtLineOne.setText(getItem(position));
-        vh.btnGo.setOnClickListener(new View.OnClickListener() {
+        /*vh.btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 Toast.makeText(getContext(), "Button Clicked Position " +
                         position, Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
         return convertView;
     }

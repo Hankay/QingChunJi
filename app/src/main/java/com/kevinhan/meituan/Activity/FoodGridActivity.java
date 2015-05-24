@@ -112,14 +112,11 @@ import java.util.List;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.col1:
+            case R.id.menu_star:
                 mGridView.setColumnCount(1);
                 break;
-            case R.id.col2:
+            case R.id.menu_share:
                 mGridView.setColumnCount(2);
-                break;
-            case R.id.col3:
-                mGridView.setColumnCount(3);
                 break;
         }
         return true;
@@ -250,32 +247,39 @@ import java.util.List;
                                     int position, long id) {
                 switch (position) {
                     case 0:
-                        /*mDrawerList.setBackgroundColor(getResources().getColor(R.color.material_deep_teal_500));
-                        mToolbar.setBackgroundColor(getResources().getColor(R.color.material_deep_teal_500));
-                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.material_deep_teal_500));*/
-                        //mDrawerToggle.onDrawerClosed(mDrawerLayout);
                         mDrawerLayout.closeDrawer(Gravity.START);
+                        Intent intent_login = new Intent(FoodGridActivity.this,LoginActivity.class);
+                        startActivity(intent_login);
                         Log.e(TAG, "点击0");
                         break;
                     case 1:
-                        /*mDrawerList.setBackgroundColor(getResources().getColor(R.color.red));
-                        toolbar.setBackgroundColor(getResources().getColor(R.color.red));
-                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.red));
-                        mDrawerLayout.closeDrawer(Gravity.START);*/
+                        mDrawerLayout.closeDrawer(Gravity.START);
+                        Intent intent_friends = new Intent(FoodGridActivity.this,FriendShareActivity.class);
+                        startActivity(intent_friends);
                         Log.e(TAG, "点击1");
                         break;
                     case 2:
-                        /*mDrawerList.setBackgroundColor(getResources().getColor(R.color.blue));
-                        toolbar.setBackgroundColor(getResources().getColor(R.color.blue));
-                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.blue));
-                        mDrawerLayout.closeDrawer(Gravity.START);*/
+                        mDrawerLayout.closeDrawer(Gravity.START);
+                        Intent intent_news = new Intent(FoodGridActivity.this,SchoolNewsActivity.class);
+                        startActivity(intent_news);
                         Log.e(TAG,"点击2");
                         break;
                     case 3:
-                        /*mDrawerList.setBackgroundColor(getResources().getColor(R.color.material_blue_grey_800));
-                        toolbar.setBackgroundColor(getResources().getColor(R.color.material_blue_grey_800));
-                        slidingTabLayout.setBackgroundColor(getResources().getColor(R.color.material_blue_grey_800));
-                        mDrawerLayout.closeDrawer(Gravity.START);*/
+                        mDrawerLayout.closeDrawer(Gravity.START);
+                        Intent intent_aboutus = new Intent(FoodGridActivity.this,AboutUsActivity.class);
+                        startActivity(intent_aboutus);
+                        Log.e(TAG,"点击3");
+                        break;
+                    case 4:
+                        mDrawerLayout.closeDrawer(Gravity.START);
+                        Intent intent_setting = new Intent(FoodGridActivity.this,SettingActivity.class);
+                        startActivity(intent_setting);
+                        Log.e(TAG,"点击3");
+                        break;
+                    case 5:
+                        mDrawerLayout.closeDrawer(Gravity.START);
+                        Intent intent_updates = new Intent(FoodGridActivity.this,UpdatesActivity.class);
+                        startActivity(intent_updates);
                         Log.e(TAG,"点击3");
                         break;
                 }
@@ -288,11 +292,11 @@ import java.util.List;
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_settings:
-                        Toast.makeText(FoodGridActivity.this, "action_settings", Toast.LENGTH_SHORT).show();
+                    case R.id.menu_star:
+                        Toast.makeText(FoodGridActivity.this, "已关注", Toast.LENGTH_SHORT).show();
                         break;
-                    case R.id.action_share:
-                        Toast.makeText(FoodGridActivity.this, "action_share", Toast.LENGTH_SHORT).show();
+                    case R.id.menu_share:
+                        Toast.makeText(FoodGridActivity.this, "分享", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         break;

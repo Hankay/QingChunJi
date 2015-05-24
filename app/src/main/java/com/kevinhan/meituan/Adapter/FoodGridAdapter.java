@@ -87,7 +87,7 @@ public class FoodGridAdapter extends BaseAdapter {
             vh = new ViewHolder();
             vh.lvLineone = (DynamicHeightImageView)convertView.findViewById(R.id.iv_line1);
             vh.txtLineOne = (DynamicHeightTextView) convertView.findViewById(R.id.txt_line1);
-            vh.btnGo = (Button) convertView.findViewById(R.id.btn_go);
+            //vh.btnGo = (Button) convertView.findViewById(R.id.btn_go);
 
             convertView.setTag(vh);
         }
@@ -117,16 +117,17 @@ public class FoodGridAdapter extends BaseAdapter {
         ImageLoader.getInstance().displayImage(imagerUrl,vh.lvLineone,options);
 
         vh.lvLineone.setHeightRatio(positionHeight);
+        vh.lvLineone.setAlpha(200);
         //vh.lvLineone.setBackgroundResource(R.drawable.thumb);
         vh.txtLineOne.setHeightRatio(positionHeight);
         vh.txtLineOne.setText(businesses.getName());
-        vh.btnGo.setOnClickListener(new View.OnClickListener() {
+        /*vh.btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 Toast.makeText(mContext, "Button Clicked Position " +
                         position, Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
         return convertView;
     }
