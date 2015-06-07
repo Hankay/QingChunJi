@@ -102,7 +102,7 @@ public class Businesses implements Serializable {
     private String coupon_url;
     private int has_deal;
     private int deal_count;
-    private List<Deals> dealses = new ArrayList<Deals>();
+    private List<Deals> deals = new ArrayList<Deals>();
     private int has_online_reservation;
     private String online_reservation_url;
 
@@ -115,7 +115,7 @@ public class Businesses implements Serializable {
                       int service_score,int avg_price,int review_count,String review_list_url,int distance,
                       String business_url,String photo_url,String s_photo_url,int photo_count,String photo_list_url,
                       int has_coupon,int coupon_id,String coupon_description,String coupon_url,int has_deal,
-                      int deal_count,List<Deals> dealses,int has_online_reservation,String online_reservation_url){
+                      int deal_count,List<Deals> deals,int has_online_reservation,String online_reservation_url){
 
         this.business_id = business_id;
         this.name = name;
@@ -151,7 +151,7 @@ public class Businesses implements Serializable {
         this.coupon_url = coupon_url;
         this.has_deal = has_deal;
         this.deal_count = deal_count;
-        this.dealses = dealses;
+        this.deals = deals;
         this.has_online_reservation = has_online_reservation;
         this.online_reservation_url = online_reservation_url;
 
@@ -431,11 +431,11 @@ public class Businesses implements Serializable {
     }
 
     public List<Deals> getDealses() {
-        return dealses;
+        return deals;
     }
 
-    public void setDealses(List<Deals> dealses) {
-        this.dealses = dealses;
+    public void setDeals(List<Deals> deals) {
+        this.deals = deals;
     }
 
     public int getHas_online_reservation() {

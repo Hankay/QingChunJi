@@ -68,9 +68,9 @@ public class FoodActivity extends Activity {
         tv_name.setText(mBusinesses.getName());
         tv_address.setText(mBusinesses.getAddress());
         tv_telephone.setText(mBusinesses.getTelephone());
-        Log.e(TAG, "-------" + mBusinesses.getDealses());
-        tv_deals1.setText("锅源!仅售118元，价值128元火锅寿司畅吃套餐，不限时段通用，新鲜海鲜，首次开团！限量抢购，起源于日本，专注于做日式火锅、刺身、寿司的日本料理店，期待您光临！");
-        tv_deals2.setText("锅源!仅售168元，价值178元火锅寿司刺身畅吃套餐，不限时段通用，新鲜海鲜，首次开团！限量抢购，起源于日本，专注于做日式火锅、刺身、寿司的日本料理店，期待您光临！");
+        Log.e(TAG, "-------" + mBusinesses.getDealses().get(0).getDescription());
+        tv_deals1.setText(mBusinesses.getDealses().get(0).getDescription());
+        tv_deals2.setText(mBusinesses.getDealses().get(1).getDescription());
 
         bt_telephone.setOnClickListener(new View.OnClickListener() {
             @Override

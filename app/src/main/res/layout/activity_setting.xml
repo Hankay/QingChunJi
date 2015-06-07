@@ -2,7 +2,8 @@
 <ScrollView xmlns:Android="http://schemas.android.com/apk/res/android"
     Android:orientation="vertical"
     Android:layout_width="fill_parent"
-    Android:layout_height="fill_parent">
+    Android:layout_height="fill_parent"
+    Android:clickable="false">
 
     <LinearLayout
         Android:layout_width="match_parent"
@@ -12,7 +13,9 @@
         Android:longClickable="false"
         Android:clickable="true">
 
-        <TextView Android:text="系统设置"
+        <TextView
+            Android:id="@+id/tv_setting_custom"
+            Android:text="系统设置"
             Android:layout_width="720px"
             Android:layout_height="120px"
             Android:textColor="@android:color/black"
@@ -21,10 +24,10 @@
             Android:layout_gravity="center" />
 
         <TextView
+            Android:id="@+id/tv_setting_message"
             Android:layout_width="720px"
             Android:layout_height="96px"
             Android:text="消息提醒"
-            Android:id="@+id/textView2"
             Android:background="@drawable/boder"
             Android:gravity="center_vertical|center_horizontal"
             Android:layout_gravity="center" />
@@ -33,7 +36,7 @@
             Android:layout_width="720px"
             Android:layout_height="96px"
             Android:text="意见反馈"
-            Android:id="@+id/textView3"
+            Android:id="@+id/tv_setting_feedback"
             Android:background="@drawable/boder"
             Android:gravity="center_vertical|center_horizontal"
             Android:layout_gravity="center" />
@@ -42,7 +45,7 @@
             Android:layout_width="720px"
             Android:layout_height="96px"
             Android:text="诊断网络"
-            Android:id="@+id/textView4"
+            Android:id="@+id/tv_setting_network"
             Android:background="@drawable/boder"
             Android:gravity="center_vertical|center_horizontal"
             Android:layout_gravity="center" />
@@ -51,7 +54,7 @@
             Android:layout_width="720px"
             Android:layout_height="96px"
             Android:text="清空缓存"
-            Android:id="@+id/textView5"
+            Android:id="@+id/tv_setting_cache"
             Android:background="@drawable/boder"
             Android:gravity="center_vertical|center_horizontal"
             Android:layout_gravity="center" />
@@ -60,7 +63,7 @@
             Android:layout_width="720px"
             Android:layout_height="96px"
             Android:text="分享设置"
-            Android:id="@+id/textView6"
+            Android:id="@+id/tv_setting_share"
             Android:background="@drawable/boder"
             Android:gravity="center_vertical|center_horizontal"
             Android:layout_gravity="center" />
@@ -69,7 +72,7 @@
             Android:layout_width="720px"
             Android:layout_height="96px"
             Android:text="字体设置"
-            Android:id="@+id/textView7"
+            Android:id="@+id/tv_setting_textsize"
             Android:background="@drawable/boder"
             Android:gravity="center_vertical|center_horizontal"
             Android:layout_gravity="center" />
@@ -78,7 +81,7 @@
             Android:layout_width="720px"
             Android:layout_height="96px"
             Android:text="扫一扫"
-            Android:id="@+id/textView8"
+            Android:id="@+id/tv_setting_sweep"
             Android:background="@drawable/boder"
             Android:gravity="center_vertical|center_horizontal"
             Android:layout_gravity="center" />
@@ -87,7 +90,7 @@
             Android:layout_width="720px"
             Android:layout_height="96px"
             Android:text="支付帮助"
-            Android:id="@+id/textView9"
+            Android:id="@+id/tv_setting_pay"
             Android:background="@drawable/boder"
             Android:gravity="center_vertical|center_horizontal"
             Android:layout_gravity="center" />

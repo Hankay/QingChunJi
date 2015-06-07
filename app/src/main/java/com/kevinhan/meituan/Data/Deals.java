@@ -1,9 +1,11 @@
 package com.kevinhan.meituan.Data;
 
+import java.io.Serializable;
+
 /**
  * Created by Kevin Han on 2015/5/12.
  */
-public class Deals {
+public class Deals implements Serializable {
 /*    "deals": [
     {
         "id": "1-11784051",

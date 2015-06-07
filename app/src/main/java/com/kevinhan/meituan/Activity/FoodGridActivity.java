@@ -62,6 +62,7 @@ import java.util.List;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sgv_food);
         setToolBar();
+        //发送网络请求
         asyncHttpFoodGrid = new AsyncHttpFoodGrid(this);
         asyncHttpFoodGrid.RequestHttp();
         //phoenx();

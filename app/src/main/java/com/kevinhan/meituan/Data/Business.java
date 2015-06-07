@@ -1,12 +1,13 @@
 package com.kevinhan.meituan.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Kevin Han on 2015/5/12.
  */
-public class Business {
+public class Business implements Serializable {
     private String status;
     private int total_count;
     private int count;
